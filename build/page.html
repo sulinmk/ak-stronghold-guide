@@ -1,4 +1,4 @@
-<title>规程叠层速查</title>
+<title>规程速查</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -100,13 +100,33 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
 .gain b{color:var(--accent)}
 h3{font-size:15px;margin:6px 0 0}
 .empty{padding:16px;color:var(--muted)}
+/* 经济页 */
+table.compact{min-width:0}
+table.wide{min-width:640px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.grid2>div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.tag{display:inline-block;font-size:12px;border-radius:4px;padding:0 6px;margin:1px 4px 1px 0;white-space:nowrap;background:var(--accent-weak);color:var(--accent)}
+.tag.bond{background:var(--m4b);color:var(--m4)}
+td.desc{white-space:pre-line;min-width:240px}
+.unknown{background:var(--surface);border:1px dashed var(--line);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;max-width:80ch}
+.unknown b{color:var(--m5)}
+th{white-space:nowrap}
+@media (max-width:600px){
+  table.wide{min-width:0}
+  table.wide thead{display:none}
+  table.wide tr{display:grid;grid-template-columns:1fr auto;gap:6px 12px;padding:10px 12px;border-bottom:1px solid var(--line)}
+  table.wide tr:last-child{border-bottom:0}
+  table.wide td{border:0;padding:0}
+  table.wide td.desc,table.wide td.trait{grid-column:1/-1;min-width:0}
+  table.wide td.hp::before{content:"初始生命 ";font-family:var(--f-body);font-size:12px;color:var(--muted)}
+}
 footer{font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:4px;max-width:80ch}
 footer a{color:var(--accent)}
 </style>
 
 <div class="wrap">
 <header>
-  <h1>规程叠层速查<small>卫戍协议·规程 序列Ⅰ · 26 个盟约，143 名干员 · 数据取自 PRTS（游戏数据版本 26-11-06），2026-11-12 整理</small></h1>
+  <h1>规程速查：叠层与经济<small>卫戍协议·规程 序列Ⅰ · 26 个盟约，143 名干员 · 盟约和干员取自 PRTS，经济数据取自游戏客户端数据 · 2026-11-12 整理</small></h1>
   <div class="rules">
     <div class="rule"><b>层数整局保留</b>游戏贴士原文：叠加的盟约会在单次模拟中始终保留，但只有在盟约被激活时才会发挥作用。</div>
     <div class="rule"><b>只给已激活的盟约叠</b>游戏贴士原文：多数情况下只有已经激活的盟约才可进行叠加。中途换主盟约，之前攒的层基本白费。</div>
@@ -117,6 +137,7 @@ footer a{color:var(--accent)}
     <button role="tab" data-tab="bond" id="tab-bond">按盟约查</button>
     <button role="tab" data-tab="sources" id="tab-sources">叠层来源</button>
     <button role="tab" data-tab="all" id="tab-all">全部干员</button>
+    <button role="tab" data-tab="econ" id="tab-econ">经济</button>
   </nav>
 </header>
 
@@ -156,9 +177,51 @@ footer a{color:var(--accent)}
   <div class="rows" id="all-rows"></div>
 </section>
 
+<section class="panel" id="p-econ" hidden>
+  <p class="lede">资金怎么来、怎么花，调度中心每一级要多少钱、开几个栏位。数值来自游戏客户端数据，规则来自 PRTS 的帮助页。</p>
+  <div class="rules" id="econ-rules"></div>
+  <h3>调度中心</h3>
+  <div class="fgroup" id="econ-mode"><span>模式</span></div>
+  <div class="tablebox"><table class="compact">
+    <thead><tr><th>等级</th><th>能出的阶</th><th>干员栏</th><th>装备栏</th><th>升下一级</th><th>累计</th></tr></thead>
+    <tbody id="econ-shop"></tbody>
+  </table></div>
+  <p class="lede">「升下一级」是初始费用，「累计」是从 1 级一路升到这一级的初始费用总和。升级费每回合自动减 1，最低到 0；升一级后，下一级的费用回到初始值。所以表里是「刚升完那一刻」的价格，多等一回合就便宜 1。</p>
+  <div class="grid2">
+    <div><h3>干员价格</h3><div class="tablebox"><table class="compact">
+      <thead><tr><th>阶</th><th>买</th><th>凑一个精锐（3 张）</th><th>卖</th></tr></thead><tbody id="econ-price"></tbody></table></div></div>
+    <div><h3>装备价格（初始品质）</h3><div class="tablebox"><table class="compact">
+      <thead><tr><th>阶</th><th>价格</th><th>种类</th></tr></thead><tbody id="econ-equip"></tbody></table></div>
+      <p class="lede">同一件初始装备凑 2 件自动合成进阶品质。</p></div>
+  </div>
+  <h3>回合安排</h3>
+  <div class="tablebox"><table class="compact">
+    <thead><tr><th>模式</th><th>回合数</th><th>特殊决策回合</th><th>有首领的回合</th></tr></thead><tbody id="econ-rounds"></tbody>
+  </table></div>
+  <p class="lede">特殊决策回合会多一个阶段：轮流拿或买装备、选悬赏、调整战斗加成。每回合作战时长上限：1～2 回合 45 秒，3～5 回合 55 秒，6 回合 70 秒，7～8 回合 85 秒，9～10 回合 95 秒，11～13 回合 115 秒，领袖轮 120 秒。</p>
+  <h3>策略：初始生命和经济效果</h3>
+  <div class="filters"><div class="fgroup" id="econ-btag"><span>只看</span></div><span class="count" id="econ-bcount"></span></div>
+  <div class="tablebox"><table class="wide">
+    <thead><tr><th>策略</th><th>初始生命</th><th>经济效果</th><th>效果原文</th></tr></thead><tbody id="econ-bands"></tbody>
+  </table></div>
+  <h3>和资金、调度中心有关的干员</h3>
+  <div class="tablebox"><table class="wide">
+    <thead><tr><th>作用</th><th>干员</th><th>盟约</th><th>特质（初始 / 精锐）</th></tr></thead><tbody id="econ-ops"></tbody>
+  </table></div>
+  <h3>和资金有关的盟约</h3>
+  <div class="tablebox"><table class="wide">
+    <thead><tr><th>盟约</th><th>激活人数</th><th>效果原文</th></tr></thead><tbody id="econ-bonds"></tbody>
+  </table></div>
+  <div class="unknown">
+    <b>还不知道的两件事</b>
+    <span>每回合休整期发多少资金，以及调度中心每一级刷出各阶干员的概率。这两项客户端数据里没有（由服务器决定），PRTS 这期也还没记录。上一期以前的数字不能直接套用：这期的帮助页写明极速模拟「资金供给及调度中心升级需求有较大调整」。</span>
+    <span>想补上的话，最省事的办法是打一局时每回合开头记一下资金数。</span>
+  </div>
+</section>
+
 <footer>
   <span>分类说明：一次性 = 拿到时加一次；每回合 = 休整期、战斗开始或结束时固定触发；战斗中 = 部署、开技能、击倒等时机触发，通常有上限；放大 = 提高别人的叠层量或上限；吃层数 = 按层数给自己加属性。分类和「随层数涨什么」是根据特质原文整理的，数值以游戏内为准。</span>
-  <span>还没收录：调度中心升级费用和刷新概率、每回合敌人强度、流派搭配。来源：<a href="https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录" target="_blank" rel="noopener">PRTS · 卫戍协议·规程/PRTS盟约记录</a></span>
+  <span>还没收录：每回合发多少资金、各阶刷新概率（未公开）、每回合敌人强度、流派搭配。来源：<a href="https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录" target="_blank" rel="noopener">PRTS · 卫戍协议·规程/PRTS盟约记录</a>、<a href="https://prts.wiki/w/卫戍协议/帮助" target="_blank" rel="noopener">PRTS · 卫戍协议/帮助</a>；经济数值取自 <a href="https://github.com/Kengxxiao/ArknightsGameData" target="_blank" rel="noopener">ArknightsGameData</a> 收录的国服客户端数据。</span>
   <span>PRTS 的整理内容采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 授权，本页也按这个协议发布；游戏文本原文版权归上海鹰角网络科技有限公司。本页是玩家自制资料，与官方无关。</span>
 </footer>
 </div>
@@ -171,7 +234,7 @@ const ALL_MODES = ["一次性","每回合","战斗中","放大","吃层数","不
 const GENERIC = ["层数最高的盟约","自己和身前一格干员的盟约","自己和身后一格干员的盟约","身前一格干员的盟约","整备区每名干员的盟约"];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const $ = id => document.getElementById(id);
-const state = {tab:"overview", bond:"炎", srcMode:new Set(STACK_MODES), srcTier:new Set([1,2,3,4,5,6]), srcBond:"", allMode:new Set(ALL_MODES), q:""};
+const state = {econMode:-1, econTags:new Set(), tab:"overview", bond:"炎", srcMode:new Set(STACK_MODES), srcTier:new Set([1,2,3,4,5,6]), srcBond:"", allMode:new Set(ALL_MODES), q:""};
 try{ const saved = JSON.parse(localStorage.getItem("stack-guide")||"{}"); if(saved.bond) state.bond = saved.bond; }catch(e){}
 function remember(){ try{ localStorage.setItem("stack-guide", JSON.stringify({bond:state.bond})); }catch(e){} }
 
@@ -259,12 +322,56 @@ function renderAll(){
   $("all-rows").innerHTML = list.map(o=>rowHTML(o,"")).join("") || '<div class="empty">没找到。试试换个关键词，比如盟约名或「休整期」。</div>';
 }
 
+function renderEcon(){
+  const E = DATA.econ, C = E.const;
+  if(state.econMode < 0) state.econMode = Math.max(0, E.shop.findIndex(s => s.label.includes("规程等级")));
+  const rules = [
+    ["资金不留到下一回合", "休整期结束时剩下的资金清零（坎诺特策略例外）。没冻结的干员和装备也会清掉。"],
+    [`刷新 ${C.shopRefreshPrice} 资金`, "冻结的干员和装备会留到下一回合。"],
+    ["卖干员一律 1 资金", "不分阶、不分精锐。例外：温蒂卖 3（精锐 6），海沫每回合涨售价。"],
+    ["三张合一个精锐", "拿到第 3 张同名初始干员时自动晋升，并临时出 3 名比调度中心等级高一阶的干员免费选 1；一刷新就没了。"],
+    ["升级费每回合减 1", "最低到 0；升级后下一级回到初始价。"],
+    [`手牌 ${C.maxDeckChessCnt} 格、上场 ${C.maxBattleChessCnt} 人`, `手牌满了买不进、也撤不回。装备手牌 ${C.maxDeckEquipmentChessCnt} 格，每名干员最多带 2 件。`],
+    [`每回合最多掉 ${C.costPlayerHpLimit} 点生命`, "按没打掉的敌人数扣。领袖轮超时每秒扣 1 点。"],
+  ];
+  $("econ-rules").innerHTML = rules.map(([b,t]) => `<div class="rule"><b>${esc(b)}</b>${esc(t)}</div>`).join("");
+  const em = $("econ-mode");
+  em.innerHTML = "<span>模式</span>" + E.shop.map((s,i) => `<button class="chip" data-i="${i}" aria-pressed="${i===state.econMode}">${esc(s.label)}</button>`).join("");
+  em.onclick = e => { const b = e.target.closest(".chip"); if(b){ state.econMode = Number(b.dataset.i); renderEcon(); } };
+  $("econ-shop").innerHTML = E.shop[state.econMode].rows.map(r => `<tr>
+    <td class="num">${r.lv}</td><td>${r.lv===1?"Ⅰ":"Ⅰ～"+ROMAN[r.lv]}</td><td class="num">${r.chars}</td><td class="num">${r.items}</td>
+    <td class="num">${r.up===null?"已满级":r.up}</td><td class="num">${r.total}</td></tr>`).join("");
+  $("econ-price").innerHTML = E.prices.map(p => `<tr><td><span class="tier t${p.tier}">${ROMAN[p.tier]}</span></td>
+    <td class="num">${p.buy}</td><td class="num">${p.buy*3}</td><td class="num">${p.sell}</td></tr>`).join("");
+  $("econ-equip").innerHTML = E.equips.map(q => `<tr><td><span class="tier t${q.tier}">${ROMAN[q.tier]}</span></td>
+    <td class="num">${q.min===q.max?q.min:q.min+"～"+q.max}</td><td class="num">${q.n}</td></tr>`).join("");
+  $("econ-rounds").innerHTML = E.rounds.map(r => `<tr><td>${esc(r.label)}</td><td class="num">${r.rounds}</td>
+    <td class="num">${r.special.length?r.special.join("、"):"无"}</td><td class="num">${r.boss.join("、")}</td></tr>`).join("");
+  const tags = [...new Set(E.bands.flatMap(b=>b.tags))];
+  const bt = $("econ-btag");
+  bt.innerHTML = "<span>只看</span>" + tags.map(t => `<button class="chip" data-t="${esc(t)}" aria-pressed="${state.econTags.has(t)}">${esc(t)}</button>`).join("");
+  bt.onclick = e => { const b = e.target.closest(".chip"); if(!b) return; const t = b.dataset.t;
+    state.econTags.has(t) ? state.econTags.delete(t) : state.econTags.add(t); renderEcon(); };
+  const bands = E.bands.filter(b => !state.econTags.size || b.tags.some(t => state.econTags.has(t)));
+  $("econ-bcount").textContent = `${bands.length} 个策略，按初始生命从高到低`;
+  $("econ-bands").innerHTML = bands.map(b => `<tr><td><b>${esc(b.name)}</b><div class="kind">${esc(b.skill)}${b.bond?' · <span class="tag bond">盟约相关</span>':""}</div></td>
+    <td class="num hp">${b.hp}</td><td>${b.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")||'<span class="kind">无</span>'}</td>
+    <td class="desc">${esc(b.desc)}</td></tr>`).join("");
+  $("econ-ops").innerHTML = E.ops.map(o => `<tr><td><span class="tag">${esc(o.tag)}</span></td>
+    <td><div class="who"><span class="tier t${o.t}">${ROMAN[o.t]}</span><span class="name">${esc(o.n)}</span></div></td>
+    <td><div class="bonds">${o.b.map(b=>`<button class="btag" data-go="${esc(b)}">${esc(b)}</button>`).join("")}</div></td>
+    <td class="trait"><div>${esc(o.t1)}</div>${o.t2?`<div class="elite">${esc(o.t2)}</div>`:""}</td></tr>`).join("");
+  $("econ-bonds").innerHTML = E.bonds.map(b => `<tr><td><button class="bondlink" data-go="${esc(b.n)}">${esc(b.n)}</button></td>
+    <td class="num">${b.ppl}</td><td class="desc">${esc(b.e).replace(/ \/ /g,"\n")}</td></tr>`).join("");
+}
+
 function render(){
-  for(const t of ["overview","bond","sources","all"]){ $("p-"+t).hidden = t!==state.tab; $("tab-"+t).setAttribute("aria-selected", t===state.tab); }
+  for(const t of ["overview","bond","sources","all","econ"]){ $("p-"+t).hidden = t!==state.tab; $("tab-"+t).setAttribute("aria-selected", t===state.tab); }
   if(state.tab==="overview") renderOverview();
   if(state.tab==="bond") renderBond();
   if(state.tab==="sources") renderSources();
   if(state.tab==="all") renderAll();
+  if(state.tab==="econ") renderEcon();
 }
 
 function go(tab){ state.tab = tab; if(location.hash !== "#"+tab) history.replaceState(null, "", "#"+tab); render(); }
@@ -281,7 +388,7 @@ $("all-q").oninput = e => { state.q = e.target.value; renderAll(); };
 chipGroup("src-mode", STACK_MODES, state.srcMode, "方式");
 chipGroup("src-tier", [1,2,3,4,5,6], state.srcTier, "阶");
 chipGroup("all-mode", ALL_MODES, state.allMode, "方式");
-const fromHash = () => { const h = location.hash.slice(1); state.tab = ["overview","bond","sources","all"].includes(h) ? h : "overview"; render(); };
+const fromHash = () => { const h = location.hash.slice(1); state.tab = ["overview","bond","sources","all","econ"].includes(h) ? h : "overview"; render(); };
 window.addEventListener("hashchange", fromHash);
 fromHash();
 </script>

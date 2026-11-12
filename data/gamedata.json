@@ -1,0 +1,1884 @@
+{
+ "season": "卫戍协议:规程",
+ "startTime": 1794124800,
+ "contentUpdateTime": 1794124800,
+ "const": {
+  "shopRefreshPrice": 1,
+  "maxDeckChessCnt": 10,
+  "maxDeckEquipmentChessCnt": 5,
+  "maxBattleChessCnt": 8,
+  "costPlayerHpLimit": 10,
+  "storeCntMax": 6
+ },
+ "modes": {
+  "mode_training_2": {
+   "name": "入门协议",
+   "code": "AC-TR-1",
+   "type": "LOCAL",
+   "rounds": 4,
+   "special": [
+    3
+   ],
+   "boss": [
+    4
+   ],
+   "shop": []
+  },
+  "mode_multi_funny": {
+   "name": "标准模拟",
+   "code": "AC-MP-1",
+   "type": "MULTI",
+   "rounds": 14,
+   "special": [
+    3,
+    9
+   ],
+   "boss": [
+    14
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 10,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_multi_normal": {
+   "name": "险境模拟",
+   "code": "AC-MP-2",
+   "type": "MULTI",
+   "rounds": 15,
+   "special": [
+    6,
+    9
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_multi_hard": {
+   "name": "绝境模拟",
+   "code": "AC-MP-3",
+   "type": "MULTI",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_multi_abyss": {
+   "name": "终极模拟",
+   "code": "AC-MP-4",
+   "type": "MULTI",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_funny": {
+   "name": "极速模拟",
+   "code": "AC-TB-1",
+   "type": "SINGLE",
+   "rounds": 9,
+   "special": [],
+   "boss": [
+    9
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 1,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 1,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 5,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 10,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 11,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_1": {
+   "name": "规程等级1",
+   "code": "AC-SP-1",
+   "type": "SINGLE",
+   "rounds": 14,
+   "special": [
+    6,
+    9
+   ],
+   "boss": [
+    14
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_2": {
+   "name": "规程等级2",
+   "code": "AC-SP-2",
+   "type": "SINGLE",
+   "rounds": 14,
+   "special": [
+    6,
+    9
+   ],
+   "boss": [
+    14
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_3": {
+   "name": "规程等级3",
+   "code": "AC-SP-3",
+   "type": "SINGLE",
+   "rounds": 14,
+   "special": [
+    6,
+    9
+   ],
+   "boss": [
+    14
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_4": {
+   "name": "规程等级4",
+   "code": "AC-SP-4",
+   "type": "SINGLE",
+   "rounds": 14,
+   "special": [
+    6,
+    9
+   ],
+   "boss": [
+    14
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_5": {
+   "name": "规程等级5",
+   "code": "AC-SP-5",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    6,
+    9
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_6": {
+   "name": "规程等级6",
+   "code": "AC-SP-6",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    6,
+    9
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_7": {
+   "name": "规程等级7",
+   "code": "AC-SP-7",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    6,
+    9
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_8": {
+   "name": "规程等级8",
+   "code": "AC-SP-8",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    6,
+    9
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_9": {
+   "name": "规程等级9",
+   "code": "AC-SP-9",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_10": {
+   "name": "规程等级10",
+   "code": "AC-SP-10",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_11": {
+   "name": "规程等级11",
+   "code": "AC-SP-11",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_12": {
+   "name": "规程等级12",
+   "code": "AC-SP-12",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_13": {
+   "name": "规程等级13",
+   "code": "AC-SP-13",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_14": {
+   "name": "规程等级14",
+   "code": "AC-SP-14",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_15": {
+   "name": "规程等级15",
+   "code": "AC-SP-15",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_16": {
+   "name": "规程等级16",
+   "code": "AC-SP-16",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_17": {
+   "name": "规程等级17",
+   "code": "AC-SP-17",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_18": {
+   "name": "规程等级18",
+   "code": "AC-SP-18",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_19": {
+   "name": "规程等级19",
+   "code": "AC-SP-19",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  },
+  "mode_single_20": {
+   "name": "规程等级20",
+   "code": "AC-SP-20",
+   "type": "SINGLE",
+   "rounds": 15,
+   "special": [
+    3,
+    9,
+    11
+   ],
+   "boss": [
+    14,
+    15
+   ],
+   "shop": [
+    {
+     "lv": 1,
+     "up": 5,
+     "chars": 3,
+     "items": 1
+    },
+    {
+     "lv": 2,
+     "up": 8,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 3,
+     "up": 11,
+     "chars": 4,
+     "items": 1
+    },
+    {
+     "lv": 4,
+     "up": 12,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 5,
+     "up": 13,
+     "chars": 5,
+     "items": 1
+    },
+    {
+     "lv": 6,
+     "up": 99,
+     "chars": 5,
+     "items": 1
+    }
+   ]
+  }
+ },
+ "prices": {
+  "1": {
+   "buy": 2,
+   "sell": 1,
+   "buyElite": 2,
+   "sellElite": 1
+  },
+  "2": {
+   "buy": 3,
+   "sell": 1,
+   "buyElite": 3,
+   "sellElite": 1
+  },
+  "3": {
+   "buy": 3,
+   "sell": 1,
+   "buyElite": 3,
+   "sellElite": 1
+  },
+  "4": {
+   "buy": 3,
+   "sell": 1,
+   "buyElite": 3,
+   "sellElite": 1
+  },
+  "5": {
+   "buy": 4,
+   "sell": 1,
+   "buyElite": 4,
+   "sellElite": 1
+  },
+  "6": {
+   "buy": 4,
+   "sell": 1,
+   "buyElite": 4,
+   "sellElite": 1
+  }
+ },
+ "equips": {
+  "1": [
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "2": [
+   1,
+   1,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   3
+  ],
+  "3": [
+   1,
+   1,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   3
+  ],
+  "4": [
+   1,
+   1,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   4
+  ],
+  "5": [
+   2,
+   2,
+   2,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   4,
+   5
+  ],
+  "6": [
+   3,
+   3,
+   3,
+   3,
+   3,
+   4,
+   6,
+   6,
+   6,
+   6,
+   6
+  ]
+ },
+ "bands": [
+  {
+   "id": "band_amiya",
+   "name": "阿米娅",
+   "type": "GENERAL",
+   "hp": 25,
+   "desc": "【众志合一】\n被动效果：场上存在3、4或5种以上激活盟约时，所有干员攻击力、生命上限分别+20%/30%/40%"
+  },
+  {
+   "id": "band_sarkazb",
+   "name": "歌利亚",
+   "type": "GENERAL",
+   "hp": 40,
+   "desc": "【坚不可摧】\n被动效果：初始目标生命值为40点"
+  },
+  {
+   "id": "band_emperor",
+   "name": "大帝",
+   "type": "GENERAL",
+   "hp": 26,
+   "desc": "【加急调派】\n被动效果：我方干员每次部署后都会使自身在本场战斗内的再部署时间-50%"
+  },
+  {
+   "id": "band_qalaisa",
+   "name": "卡莱莎",
+   "type": "GENERAL",
+   "hp": 26,
+   "desc": "【食腐之蝶】\n被动效果：我方干员被击倒时，场上剩余我方单位攻击力+20%（最大+200%，持续至被击倒或战斗结束）"
+  },
+  {
+   "id": "band_ioleta",
+   "name": "伊奥莱塔·罗素",
+   "type": "GENERAL",
+   "hp": 29,
+   "desc": "【统御号令】\n被动效果：战斗开始时，场上每有1名精锐干员，精锐干员的攻击力、生命上限+10%"
+  },
+  {
+   "id": "band_survive",
+   "name": "百炼嘉维尔",
+   "type": "GENERAL",
+   "hp": 27,
+   "desc": "【意志鼓舞】\n拖拽使用（消耗0）：选择一名我方干员，下次战斗开始时立即击倒并复活，并获得额外2次复活次数"
+  },
+  {
+   "id": "band_price",
+   "name": "天空盒",
+   "type": "GENERAL",
+   "hp": 28,
+   "desc": "【内部货源】\n点击使用（消耗0）：下一件购买的装备价格-1（最多减至0）"
+  },
+  {
+   "id": "band_transfer",
+   "name": "风丸",
+   "type": "GENERAL",
+   "hp": 25,
+   "desc": "【纸片替身】\n拖拽使用（消耗0）：选择一名调度中心内的干员，使其变为相同等阶的随机干员（每回合限2次）"
+  },
+  {
+   "id": "band_dance",
+   "name": "妮芙",
+   "type": "GENERAL",
+   "hp": 28,
+   "desc": "【溃心领域】\n拖拽使用（消耗0）：选择一个可用地块，战斗开始后首次经过该地块的敌人获得恐惧，持续3秒（每回合限1次）\n第4、8、12回合时升级，增加使用次数"
+  },
+  {
+   "id": "band_copy",
+   "name": "夕",
+   "type": "GENERAL",
+   "hp": 28,
+   "desc": "【幻画为真】\n拖拽使用（消耗0）：选择一名我方干员，获得他的复制体，包括精锐状态和携带的装备（每场模拟限1次）"
+  },
+  {
+   "id": "band_jenga",
+   "name": "但书",
+   "type": "GENERAL",
+   "hp": 26,
+   "desc": "【条文修正】\n第4回合解锁\n拖拽使用（消耗0）：选择一名我方干员，使该干员已激活的所有盟约层数+9（冷却3回合）"
+  },
+  {
+   "id": "band_evolve",
+   "name": "大嘴莫布",
+   "type": "GENERAL",
+   "hp": 26,
+   "desc": "【全场聚焦】\n拖拽使用（消耗1）：选择一名我方干员，下次战斗开始时变为精锐干员，持续至战斗结束"
+  },
+  {
+   "id": "band_jesica",
+   "name": "杰西卡",
+   "type": "GENERAL",
+   "hp": 22,
+   "desc": "【集结指示】\n被动效果：在第4、7、10、13回合进入休整期时获得1个<寻呼模块>\n<寻呼模块>：装备时销毁，在调度中心出现至多3名拥有该干员第一盟约的其他干员，免费获取其中1名（等阶不高于当前调度中心）"
+  },
+  {
+   "id": "band_takecare",
+   "name": "华法琳",
+   "type": "GENERAL",
+   "hp": 24,
+   "desc": "【重点监护】\n被动效果：战斗开始时，使场上每个不同等阶的1个随机我方干员所属的已激活盟约层数+1\n调度中心等级达到3级、5级时升级使盟约层数额外+1"
+  },
+  {
+   "id": "band_shield",
+   "name": "桑葚",
+   "type": "GENERAL",
+   "hp": 24,
+   "desc": "【药枚实验】\n拖拽使用（消耗0）：选择一名我方干员，在下次战斗开始时获得效果：每次攻击时有20%的概率获得1层护盾（最多1层）\n第7回合时效果升级"
+  },
+  {
+   "id": "band_smith",
+   "name": "奥达",
+   "type": "GENERAL",
+   "hp": 26,
+   "desc": "【全力熔铸】\n被动效果：在第3、6、9、12、14回合进入休整期时获得1件当前调度中心等级的随机装备"
+  },
+  {
+   "id": "band_weakness",
+   "name": "陈",
+   "type": "GENERAL",
+   "hp": 26,
+   "desc": "【以己之长】\n被动效果：所有干员造成的物理和法术伤害变为弱点伤害（根据敌人的防御力和法术抗性变更伤害类型），精锐干员额外获得攻击力+16%，攻击速度+16"
+  },
+  {
+   "id": "band_lmlee",
+   "name": "老鲤",
+   "type": "GENERAL",
+   "hp": 27,
+   "desc": "【得闲饮茶】\n被动效果：第1、2回合的资金暂存至第3回合发放；第3回合进入休整期时，获得2、4阶随机干员各1名"
+  },
+  {
+   "id": "band_fang",
+   "name": "芬",
+   "type": "GENERAL",
+   "hp": 24,
+   "desc": "【协力共进】\n被动效果：第8、10、12、14回合进入休整期时获得1个<信标>\n<信标>：装备时销毁携带干员，在调度中心出现2名同等阶干员，免费获得其中1名；被销毁干员在下回合传递给对应盟约人数最多的队友"
+  },
+  {
+   "id": "band_amedic",
+   "name": "Touch",
+   "type": "GENERAL",
+   "hp": 28,
+   "desc": "【外勤医疗】\n被动效果：所有玩家场上出现一名<预备干员-医疗>；战斗开始时，若场上至少有2名精锐干员，则替换为<Touch>"
+  },
+  {
+   "id": "band_mech",
+   "name": "森蚺",
+   "type": "GENERAL",
+   "hp": 29,
+   "desc": "【暴躁铁皮】\n被动效果：第1回合获得1名可以装备4件装备的特殊干员<“暴躁铁皮”>"
+  },
+  {
+   "id": "band_treasure",
+   "name": "寻宝人",
+   "type": "GENERAL",
+   "hp": 22,
+   "desc": "【宝藏探机】\n拖拽使用（消耗1）：选择一个可用地块，部署1个<“模拟宝藏”>（冷却3回合）\n<“模拟宝藏”>：被敌人触碰就会永久消失，战斗结束时若仍存在则获得额外1资金"
+  },
+  {
+   "id": "band_upgrade",
+   "name": "缪尔赛思",
+   "type": "GENERAL",
+   "hp": 28,
+   "desc": "【至纯凝结】\n拖拽使用（消耗0）：选择一名我方干员，立即使该干员晋升为精锐干员（每场模拟限1次）"
+  },
+  {
+   "id": "band_breakaway",
+   "name": "Misery",
+   "type": "GENERAL",
+   "hp": 27,
+   "desc": "【消解空间】\n拖拽使用（消耗0）：选择一名我方干员，下场战斗开始后首次受到伤害时使其击倒，并召唤整备区最右侧干员"
+  },
+  {
+   "id": "band_damaztic",
+   "name": "“变形者集群”",
+   "type": "GENERAL",
+   "hp": 22,
+   "desc": "【变形同构】\n被动效果：每5回合获得1件特殊装备<变形同构体>\n<变形同构体>：与特定装备一同装备时装备者将视为特定盟约成员"
+  },
+  {
+   "id": "band_fund",
+   "name": "小贾斯汀",
+   "type": "GENERAL",
+   "hp": 23,
+   "desc": "【私募基金】\n点击使用（消耗0）：随机获得1-6资金（冷却回合数等同于获得资金）"
+  },
+  {
+   "id": "band_gain",
+   "name": "铃兰",
+   "type": "GENERAL",
+   "hp": 20,
+   "desc": "【御守之力】\n拖拽使用（消耗0）：选择一名我方干员，触发该干员的<获得时>类特质"
+  },
+  {
+   "id": "band_prepfin",
+   "name": "苏苏洛",
+   "type": "GENERAL",
+   "hp": 21,
+   "desc": "【强制休整】\n拖拽使用（消耗0）：选择一名我方干员，使该干员的<休整期结束时>类特质本回合可以额外触发一次"
+  },
+  {
+   "id": "band_mess",
+   "name": "昆图斯",
+   "type": "GENERAL",
+   "hp": 24,
+   "desc": "【不稳定要素】\n第4回合解锁\n拖拽使用（消耗0）：选择一名我方干员，立即使其变为更高一阶的随机干员（最高不超过6阶）"
+  },
+  {
+   "id": "band_protect",
+   "name": "信仰搅拌机",
+   "type": "GENERAL",
+   "hp": 27,
+   "desc": "【献身护卫】\n第4回合解锁\n点击使用（消耗0）：自身目标生命值降至与场上最低的玩家相同并获得等同损失生命值的资金（至多10资金），在<休整期结束时>为该玩家回复等额目标生命值"
+  },
+  {
+   "id": "band_random",
+   "name": "“追随者们”",
+   "type": "GENERAL",
+   "hp": 21,
+   "desc": "【好多委托！】\n被动效果：每次进入休整期时，从2个随机指令中选择1个并替换当前指令"
+  },
+  {
+   "id": "band_cannot",
+   "name": "坎诺特",
+   "type": "GENERAL",
+   "hp": 27,
+   "desc": "【利滚利】\n被动效果：每回合剩余的资金可以继承，剩余至少5资金时，每回合额外获得1资金"
+  },
+  {
+   "id": "band_ducklord",
+   "name": "鸭爵",
+   "type": "GENERAL",
+   "hp": 29,
+   "desc": "【“神秘顾客”】\n被动效果：从第5回合起，你和队友遭遇的部分敌人可能会替换为<鸭爵>、<高普尼克>、<流泪小子>、<圆仔>，击倒这些敌人可以获得1资金奖励（包括联防阶段）"
+  },
+  {
+   "id": "band_rich",
+   "name": "琳琅诗怀雅",
+   "type": "GENERAL",
+   "hp": 24,
+   "desc": "【最佳品味】\n消耗资金达到60时解锁\n点击使用（消耗0）：随机获取当前调度中心内的1名干员\n消耗资金达到120时升级为获取2名"
+  },
+  {
+   "id": "band_substitute",
+   "name": "巫恋",
+   "type": "GENERAL",
+   "hp": 25,
+   "desc": "【替身娃娃】\n被动效果：每回合首次出售初始干员时，改为与调度中心中随机1名干员交换"
+  },
+  {
+   "id": "band_sell",
+   "name": "三船光平",
+   "type": "GENERAL",
+   "hp": 22,
+   "desc": "【东之极道】\n拖拽使用（消耗0）：选择一名我方干员，将其出售并为所有已激活盟约叠加等同于该干员等阶的层数"
+  },
+  {
+   "id": "band_support",
+   "name": "雅拉",
+   "type": "GENERAL",
+   "hp": 24,
+   "desc": "【人才锁定】\n点击使用（消耗1）：刷新调度中心，必定包含1名比当前调度中心等级更高一阶（最高不超过6阶）的干员（每回合限3次）"
+  },
+  {
+   "id": "band_high",
+   "name": "渡桥",
+   "type": "GENERAL",
+   "hp": 30,
+   "desc": "【专享情报】\n点击使用（消耗3）：进行一次特殊刷新：此次刷新出现的干员优先为已部署在场上的干员（每场模拟限1次）"
+  },
+  {
+   "id": "band_equipment",
+   "name": "Mechanist",
+   "type": "GENERAL",
+   "hp": 29,
+   "desc": "【精巧设计】\n被动效果：每回合首次装备合并进阶时，在调度中心出现3件装备（可能出现更高一阶的装备）免费获取其中1件\n点击使用（消耗0）：使调度中心出现1件新的装备并替换（每回合限2次）"
+  },
+  {
+   "id": "band_pudd",
+   "name": "布丁",
+   "type": "GENERAL",
+   "hp": 23,
+   "desc": "【电气化！】\n拖拽使用（消耗1）：选择调度中心的一件装备使其立刻销毁，并在下次战斗开始时使场上所有还有空栏位的干员暂时获得该装备直到战斗结束（无法对<装备时销毁>的装备使用）"
+  },
+  {
+   "id": "band_closeout",
+   "name": "拜松",
+   "type": "GENERAL",
+   "hp": 23,
+   "desc": "【打包速递】\n点击使用（消耗9）：获得当前调度中心中的所有干员，每回合休整期结束时指令消耗资金-1，使用后指令重置并可再次使用"
+  },
+  {
+   "id": "band_pith",
+   "name": "Pith",
+   "type": "GENERAL",
+   "hp": 24,
+   "desc": "【优等生】\n被动效果：第1回合获得1名可以造成神经、灼燃、凋亡损伤的特殊干员，其属于【调和】盟约\n【调和】：激活时使场上核心盟约的激活人数+1，【调和】干员享受已激活的核心盟约的效果"
+  },
+  {
+   "id": "band_limit",
+   "name": "坚雷",
+   "type": "GENERAL",
+   "hp": 25,
+   "desc": "【正直教官】\n拖拽使用（消耗0）：选择一名我方干员，使其在下场战斗中卫戍能力的叠层上限提升，数量等同于当前回合数"
+  },
+  {
+   "id": "band_bonus",
+   "name": "复奏",
+   "type": "GENERAL",
+   "hp": 24,
+   "desc": "【二重奏】\n被动效果：每回合首次晋升精锐干员时，获得1次额外的晋升奖励"
+  },
+  {
+   "id": "band_yan2",
+   "name": "望",
+   "type": "BONDRELEVANT",
+   "hp": 23,
+   "desc": "【黑白相易】\n拖拽使用（消耗1）：选择一名我方干员移除，获得1名不高于该干员等阶的【炎】干员\n<在场6名不同【炎】干员> 效果替换为战斗开始时收集【炎】干员部分属性召唤“炎佑”\n<在场9名不同【炎】干员> 效果改为召唤两只“炎佑”"
+  },
+  {
+   "id": "band_yan",
+   "name": "杜遥夜",
+   "type": "BONDRELEVANT",
+   "hp": 26,
+   "desc": "【广交豪杰】\n点击使用（消耗1）：刷新调度中心，优先刷新出1名【炎】干员（每回合限2次）"
+  },
+  {
+   "id": "band_sargon",
+   "name": "娜仁图亚",
+   "type": "BONDRELEVANT",
+   "hp": 24,
+   "desc": "【沙洲梦魇】\n被动效果：获得3名【萨尔贡】干员后使当前调度中心升级消耗资金-3，调度中心每个等级至多生效1次\n<在场6名不同【萨尔贡】干员> 效果替换为【萨尔贡】干员开启技能会使所有【萨尔贡】干员攻击力增加"
+  },
+  {
+   "id": "band_pepe",
+   "name": "佩佩",
+   "type": "BONDRELEVANT",
+   "hp": 23,
+   "desc": "【博学多通】\n被动效果：升级调度中心至2、4和6级后，获得1次特殊刷新：此次刷新出现的干员优先为【萨尔贡】干员"
+  },
+  {
+   "id": "band_victoria",
+   "name": "洛洛",
+   "type": "BONDRELEVANT",
+   "hp": 25,
+   "desc": "【自发制造】\n被动效果：每购买3名【维多利亚】干员，获得1件随机装备（等阶不高于当前调度中心）\n<在场6名不同【维多利亚】干员> 效果替换为【维多利亚】干员技能开启后，周围八格干员同时享受该干员携带的装备效果，持续一定时间"
+  },
+  {
+   "id": "band_harold",
+   "name": "哈洛德",
+   "type": "BONDRELEVANT",
+   "hp": 23,
+   "desc": "【人才盲盒】\n被动效果：从第4回合开始每2回合获得1名【维多利亚】干员（等阶不高于当前调度中心）"
+  },
+  {
+   "id": "band_egir",
+   "name": "歌蕾蒂娅",
+   "type": "BONDRELEVANT",
+   "hp": 23,
+   "desc": "【猎人战法】\n调度中心等级达到4级解锁\n点击使用（消耗1）：获得1名【阿戈尔】干员（等阶不高于当前调度中心）\n<在场6名不同【阿戈尔】干员> 效果替换为前3名【阿戈尔】干员首次被击倒时召唤整备区最右侧一名可部署至当前位置的【阿戈尔】干员"
+  },
+  {
+   "id": "band_clementia",
+   "name": "克莱门莎",
+   "type": "BONDRELEVANT",
+   "hp": 26,
+   "desc": "【崇高牺牲】\n被动效果：【阿戈尔】干员被击倒时，使已激活的【阿戈尔】盟约叠加等同于该干员等阶的层数"
+  },
+  {
+   "id": "band_kazimier",
+   "name": "焰尾",
+   "type": "BONDRELEVANT",
+   "hp": 25,
+   "desc": "【骑士团长】\n点击使用（消耗6）：获得1名【卡西米尔】干员（等阶不高于当前调度中心），每回合休整期结束时指令消耗资金-2，使用后指令重置并可再次使用\n<在场6名不同【卡西米尔】干员> 效果替换为【卡西米尔】干员阻挡时每2秒对周围敌人造成真实伤害并晕眩，未阻挡时攻击附带真实伤害"
+  },
+  {
+   "id": "band_mlynar",
+   "name": "玛恩纳",
+   "type": "BONDRELEVANT",
+   "hp": 28,
+   "desc": "【业务指标】\n被动效果：每购买1名【卡西米尔】干员，下回合开始时资金+1，每回合至多3资金"
+  },
+  {
+   "id": "band_kjerag2",
+   "name": "耶拉",
+   "type": "BONDRELEVANT",
+   "hp": 23,
+   "desc": "【不融信念】\n被动效果：在第4、7、10、13回合进入休整期时获得1个<谢拉格不融冰>\n<谢拉格不融冰>：造成伤害时有12%概率对目标施加1.5秒的寒冷\n<在场6名不同【谢拉格】干员> 效果替换为战场上每25秒吹过一阵寒风使敌人受到寒冷效果"
+  },
+  {
+   "id": "band_kjerag",
+   "name": "休露丝",
+   "type": "BONDRELEVANT",
+   "hp": 23,
+   "desc": "【雪域礼赠】\n被动效果：每回合首次购买的【谢拉格】干员消耗资金为1"
+  },
+  {
+   "id": "band_siracusa",
+   "name": "裁度",
+   "type": "BONDRELEVANT",
+   "hp": 26,
+   "desc": "【量体裁衣】\n被动效果：每回合首次主动刷新后获得1资金\n<在场6名不同【叙拉古】干员> 效果替换为【叙拉古】干员部署后进入隐匿状态，在隐匿状态和脱离隐匿10秒内对敌人攻击时有概率造成真实伤害并恐惧目标"
+  },
+  {
+   "id": "band_bond",
+   "name": "贾维",
+   "type": "BONDRELEVANT",
+   "hp": 24,
+   "desc": "【团伙行动】\n被动效果：每回合内主动刷新4次调度中心后，获得1名【叙拉古】干员（等阶不高于当前调度中心），每回合至多触发1次"
+  },
+  {
+   "id": "band_lethania",
+   "name": "车尔尼",
+   "type": "BONDRELEVANT",
+   "hp": 24,
+   "desc": "【流动乐章】\n点击使用（消耗1）：获得1名【莱塔尼亚】干员（等阶不高于当前调度中心），每次使用后指令消耗资金永久+1"
+  },
+  {
+   "id": "band_ursus",
+   "name": "怒潮凛冬",
+   "type": "BONDRELEVANT",
+   "hp": 26,
+   "desc": "【无惧风雪】\n点击使用（消耗5）：获得1名【乌萨斯】干员（等阶不高于当前调度中心），每次购买【乌萨斯】干员时指令消耗资金-1，使用后指令重置并可再次使用"
+  },
+  {
+   "id": "band_iberia",
+   "name": "引星棘刺",
+   "type": "BONDRELEVANT",
+   "hp": 23,
+   "desc": "【出航时刻】\n【伊比利亚】盟约激活人数达到4时解锁\n拖拽使用（消耗1）：选择一名调度中心内的干员，使其替换为不高于该干员等阶的【伊比利亚】干员（每回合限2次）"
+  }
+ ]
+}

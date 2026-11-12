@@ -1,0 +1,287 @@
+<title>规程叠层速查</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* 布局：一条顶栏（标题 + 规则条 + 标签页），下面是可筛选的表格行；行在窄屏时堆叠 */
+:root{
+  --bg:#eef3f2; --surface:#ffffff; --ink:#122422; --muted:#56706c; --line:#d3dfdc;
+  --accent:#0b766d; --accent-weak:#d8eeea; --mark:#fff1c2; --mark-ink:#5a4300;
+  --m1:#a15c00; --m1b:#fbecd6; --m2:#0b766d; --m2b:#d8eeea; --m3:#1f5fb8; --m3b:#dde8f8;
+  --m4:#6b45b8; --m4b:#ebe3f8; --m5:#b23b5a; --m5b:#f8e0e6; --m6:#66726f; --m6b:#e6ebea;
+  --t1:#7d8583; --t2:#54606d; --t3:#178a6c; --t4:#1a78c2; --t5:#b98a00; --t6:#d0650a;
+  --f-display:"Space Grotesk","PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  --f-body:"PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0a1413; --surface:#101e1d; --ink:#e2eeec; --muted:#8aa39f; --line:#223835;
+  --accent:#43c7b6; --accent-weak:#13332f; --mark:#3b3110; --mark-ink:#ffe08a;
+  --m1:#f0b25c; --m1b:#3a2a12; --m2:#43c7b6; --m2b:#13332f; --m3:#7fb2ff; --m3b:#16294a;
+  --m4:#b89cff; --m4b:#2a2145; --m5:#ff8fab; --m5b:#3d1a24; --m6:#9aa8a5; --m6b:#1f2b2a;
+  --t1:#a3aaa8; --t2:#c8d2dc; --t3:#46d6a8; --t4:#4fb3ff; --t5:#f2c53d; --t6:#ff9a3d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0a1413; --surface:#101e1d; --ink:#e2eeec; --muted:#8aa39f; --line:#223835;
+  --accent:#43c7b6; --accent-weak:#13332f; --mark:#3b3110; --mark-ink:#ffe08a;
+  --m1:#f0b25c; --m1b:#3a2a12; --m2:#43c7b6; --m2b:#13332f; --m3:#7fb2ff; --m3b:#16294a;
+  --m4:#b89cff; --m4b:#2a2145; --m5:#ff8fab; --m5b:#3d1a24; --m6:#9aa8a5; --m6b:#1f2b2a;
+  --t1:#a3aaa8; --t2:#c8d2dc; --t3:#46d6a8; --t4:#4fb3ff; --t5:#f2c53d; --t6:#ff9a3d; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{display:flex;flex-direction:column;gap:10px}
+h1{font-family:var(--f-display);font-size:28px;line-height:1.2;margin:0;letter-spacing:.01em;text-wrap:balance}
+h1 small{display:block;font-family:var(--f-body);font-size:13px;font-weight:400;color:var(--muted);letter-spacing:0;margin-top:4px}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.rule{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13px}
+.rule b{display:block;font-size:11px;letter-spacing:.08em;color:var(--accent);font-weight:600;margin-bottom:2px}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;padding-top:6px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav.tabs button{font:inherit;font-size:14px;background:none;border:0;border-bottom:2px solid transparent;padding:8px 12px;color:var(--muted);cursor:pointer}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.panel{display:flex;flex-direction:column;gap:14px}
+.lede{color:var(--muted);margin:0;max-width:68ch}
+.filters{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.fgroup{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fgroup>span{font-size:12px;color:var(--muted);margin-right:2px}
+.chip{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:3px 11px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+select,input[type=search]{font:inherit;font-size:13px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 8px}
+input[type=search]{min-width:0;width:220px;max-width:100%}
+.count{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+/* 盟约总览表 */
+.tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:600;background:var(--bg);position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.bondlink{font:inherit;font-weight:600;color:var(--accent);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.kind{font-size:11px;color:var(--muted)}
+.th{display:inline-block;font-size:12px;background:var(--accent-weak);color:var(--accent);border-radius:4px;padding:0 6px;margin:1px 4px 1px 0;white-space:nowrap}
+/* 干员行 */
+.rows{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+.row{display:grid;grid-template-columns:150px 150px 170px 1fr;gap:4px 14px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row>*{min-width:0}
+.who{display:flex;gap:8px;align-items:baseline}
+.tier{font-family:var(--f-display);font-weight:700;font-size:12px;min-width:22px;text-align:center;border:1.5px solid currentColor;border-radius:4px;line-height:18px}
+.tier.t1{color:var(--t1)}.tier.t2{color:var(--t2)}.tier.t3{color:var(--t3)}.tier.t4{color:var(--t4)}.tier.t5{color:var(--t5)}.tier.t6{color:var(--t6)}
+.name{font-weight:600}
+.bonds{display:flex;flex-wrap:wrap;gap:4px}
+.btag{font-size:12px;border:1px solid var(--line);border-radius:4px;padding:0 5px;color:var(--muted);background:none;font-family:inherit;cursor:pointer}
+.btag.hit{border-color:var(--accent);color:var(--accent);font-weight:600}
+.mode{display:inline-block;font-size:12px;font-weight:600;border-radius:4px;padding:0 6px}
+.mode.一次性{color:var(--m1);background:var(--m1b)}.mode.每回合{color:var(--m2);background:var(--m2b)}.mode.战斗中{color:var(--m3);background:var(--m3b)}
+.mode.放大{color:var(--m4);background:var(--m4b)}.mode.吃层数{color:var(--m5);background:var(--m5b)}.mode.不叠层{color:var(--m6);background:var(--m6b)}
+.when{font-size:12px;color:var(--muted);margin-left:4px}
+.stack{display:flex;flex-direction:column;gap:2px}
+.stack .line{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.amt{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums}
+.meta{font-size:12px;color:var(--muted)}
+.trait{font-size:13px}
+.trait .elite{color:var(--muted)}
+.trait .elite::before{content:"精锐  ";font-size:11px;letter-spacing:.06em;color:var(--accent)}
+.note{font-size:12px;color:var(--m4)}
+@media (max-width:860px){.row{grid-template-columns:1fr 1fr}.row .trait{grid-column:1/-1}}
+@media (max-width:480px){.row{grid-template-columns:1fr}}
+/* 按盟约查 */
+.bondpick{display:flex;flex-direction:column;gap:8px}
+.bondcard{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.bondcard h2{font-family:var(--f-display);font-size:22px;margin:0;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.bondcard h2 span{font-family:var(--f-body);font-size:13px;font-weight:400;color:var(--muted)}
+.effect{font-size:14px;max-width:80ch}
+.effect mark{background:var(--mark);color:var(--mark-ink);border-radius:3px;padding:0 2px;font-family:var(--f-mono);font-size:13px}
+.gain{font-size:14px}
+.gain b{color:var(--accent)}
+h3{font-size:15px;margin:6px 0 0}
+.empty{padding:16px;color:var(--muted)}
+footer{font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:4px;max-width:80ch}
+footer a{color:var(--accent)}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>规程叠层速查<small>卫戍协议·规程 序列Ⅰ · 26 个盟约，143 名干员 · 数据取自 PRTS（游戏数据版本 26-11-06），2026-11-12 整理</small></h1>
+  <div class="rules">
+    <div class="rule"><b>层数整局保留</b>游戏贴士原文：叠加的盟约会在单次模拟中始终保留，但只有在盟约被激活时才会发挥作用。</div>
+    <div class="rule"><b>只给已激活的盟约叠</b>游戏贴士原文：多数情况下只有已经激活的盟约才可进行叠加。中途换主盟约，之前攒的层基本白费。</div>
+    <div class="rule"><b>联防不叠</b>联合模拟里帮队友联防时，盟约不会继续叠加。</div>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="overview" id="tab-overview">盟约总览</button>
+    <button role="tab" data-tab="bond" id="tab-bond">按盟约查</button>
+    <button role="tab" data-tab="sources" id="tab-sources">叠层来源</button>
+    <button role="tab" data-tab="all" id="tab-all">全部干员</button>
+  </nav>
+</header>
+
+<section class="panel" id="p-overview" hidden>
+  <p class="lede">每个盟约随层数涨什么、在哪些层数有门槛，以及成员里有几个能给它叠层。点盟约名看详情。</p>
+  <div class="tablebox"><table>
+    <thead><tr><th>盟约</th><th>激活 / 满人</th><th>随层数涨什么</th><th>层数门槛</th><th>成员</th><th>会叠层的成员</th></tr></thead>
+    <tbody id="ov-body"></tbody>
+  </table></div>
+</section>
+
+<section class="panel" id="p-bond" hidden>
+  <div class="bondpick">
+    <div class="fgroup" id="pick-core"><span>核心盟约</span></div>
+    <div class="fgroup" id="pick-extra"><span>附加盟约</span></div>
+  </div>
+  <div id="bond-detail" class="panel"></div>
+</section>
+
+<section class="panel" id="p-sources" hidden>
+  <p class="lede">所有会叠层或放大叠层的干员。「每回合」的越早拿越赚；「战斗中」的有上限，配 Mon3tr、凛御银灰、薇薇安娜能把上限抬高。</p>
+  <div class="filters">
+    <div class="fgroup" id="src-mode"><span>方式</span></div>
+    <div class="fgroup" id="src-tier"><span>阶</span></div>
+    <div class="fgroup"><span>盟约</span><select id="src-bond" aria-label="按盟约筛选"><option value="">全部</option></select></div>
+    <span class="count" id="src-count"></span>
+  </div>
+  <div class="rows" id="src-rows"></div>
+</section>
+
+<section class="panel" id="p-all" hidden>
+  <div class="filters">
+    <input type="search" id="all-q" placeholder="搜干员名、盟约或特质文字" aria-label="搜索干员">
+    <div class="fgroup" id="all-mode"><span>方式</span></div>
+    <span class="count" id="all-count"></span>
+  </div>
+  <div class="rows" id="all-rows"></div>
+</section>
+
+<footer>
+  <span>分类说明：一次性 = 拿到时加一次；每回合 = 休整期、战斗开始或结束时固定触发；战斗中 = 部署、开技能、击倒等时机触发，通常有上限；放大 = 提高别人的叠层量或上限；吃层数 = 按层数给自己加属性。分类和「随层数涨什么」是根据特质原文整理的，数值以游戏内为准。</span>
+  <span>还没收录：调度中心升级费用和刷新概率、每回合敌人强度、流派搭配。来源：<a href="https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录" target="_blank" rel="noopener">PRTS · 卫戍协议·规程/PRTS盟约记录</a></span>
+  <span>PRTS 的整理内容采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 授权，本页也按这个协议发布；游戏文本原文版权归上海鹰角网络科技有限公司。本页是玩家自制资料，与官方无关。</span>
+</footer>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const ROMAN = ["","Ⅰ","Ⅱ","Ⅲ","Ⅳ","Ⅴ","Ⅵ"];
+const STACK_MODES = ["一次性","每回合","战斗中","放大"];
+const ALL_MODES = ["一次性","每回合","战斗中","放大","吃层数","不叠层"];
+const GENERIC = ["层数最高的盟约","自己和身前一格干员的盟约","自己和身后一格干员的盟约","身前一格干员的盟约","整备区每名干员的盟约"];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $ = id => document.getElementById(id);
+const state = {tab:"overview", bond:"炎", srcMode:new Set(STACK_MODES), srcTier:new Set([1,2,3,4,5,6]), srcBond:"", allMode:new Set(ALL_MODES), q:""};
+try{ const saved = JSON.parse(localStorage.getItem("stack-guide")||"{}"); if(saved.bond) state.bond = saved.bond; }catch(e){}
+function remember(){ try{ localStorage.setItem("stack-guide", JSON.stringify({bond:state.bond})); }catch(e){} }
+
+function rowHTML(o, hiBond){
+  const bonds = o.b.map(b => `<button class="btag${b===hiBond?" hit":""}" data-go="${esc(b)}" title="查看${esc(b)}盟约">${esc(b)}</button>`).join("");
+  const isStack = ["一次性","每回合","战斗中"].includes(o.m);
+  const line1 = `<span class="mode ${o.m}">${o.m}</span>${o.w?`<span class="when">${esc(o.w)}</span>`:""}`;
+  let detail = "";
+  if(isStack){
+    detail = `<div class="line"><span class="meta">叠给</span><span>${esc(o.sc)}</span></div>
+      <div class="line"><span class="amt">${esc(o.a)}</span>${o.cap?`<span class="meta">${esc(o.cap)}</span>`:""}${o.bench?`<span class="meta">整备区也生效</span>`:""}</div>`;
+  } else if(o.bench){ detail = `<div class="line"><span class="meta">整备区也生效</span></div>`; }
+  const note = o.note ? `<div class="note">${esc(o.note)}</div>` : "";
+  const eat = o.eat && o.m!=="吃层数" ? `<div class="meta">也按层数给自己加属性</div>` : "";
+  return `<div class="row">
+    <div class="who"><span class="tier t${o.t}">${ROMAN[o.t]}</span><span class="name">${esc(o.n)}</span></div>
+    <div class="bonds">${bonds}</div>
+    <div class="stack"><div class="line">${line1}</div>${detail}${note}${eat}</div>
+    <div class="trait"><div>${esc(o.t1)}</div>${o.t2?`<div class="elite">${esc(o.t2)}</div>`:""}</div>
+  </div>`;
+}
+
+function renderOverview(){
+  $("ov-body").innerHTML = DATA.bonds.map(b => `<tr>
+    <td><button class="bondlink" data-go="${esc(b.n)}">${esc(b.n)}</button><div class="kind">${b.core?"核心":"附加"}</div></td>
+    <td class="num">${b.ppl}${b.full?` / ${b.full}`:""}</td>
+    <td>${esc(b.gain)}</td>
+    <td>${b.th.map(t=>`<span class="th">${esc(t)}</span>`).join("")||'<span class="kind">无</span>'}</td>
+    <td class="num">${b.cnt}</td>
+    <td class="num">${b.stk}</td></tr>`).join("");
+}
+
+function renderPicker(){
+  const mk = b => `<button class="chip" data-pick="${esc(b.n)}" aria-pressed="${b.n===state.bond}">${esc(b.n)}</button>`;
+  $("pick-core").innerHTML = '<span>核心盟约</span>' + DATA.bonds.filter(b=>b.core).map(mk).join("");
+  $("pick-extra").innerHTML = '<span>附加盟约</span>' + DATA.bonds.filter(b=>!b.core).map(mk).join("");
+}
+
+function renderBond(){
+  renderPicker();
+  const b = DATA.bonds.find(x => x.n === state.bond) || DATA.bonds[0];
+  const eff = esc(b.e).replace(/\(([-\d.+]+[+-][\d.]+×层数)\)/g, '<mark>($1)</mark>').replace(/ \/ /g, "<br>");
+  const members = DATA.ops.filter(o => o.b.includes(b.n)).sort((x,y)=>x.t-y.t);
+  const memberSet = new Set(members.map(o=>o.n));
+  const helpers = DATA.ops.filter(o => !memberSet.has(o.n) && (
+      (["一次性","每回合","战斗中"].includes(o.m) && (GENERIC.includes(o.sc) || (o.sc==="所有已激活核心盟约" && b.core))) ||
+      (o.m==="放大" && !(o.n==="塔露拉" && b.n!=="乌萨斯") && !(o.n==="凛御银灰" && !["谢拉格","灵巧"].includes(b.n)))
+    )).sort((x,y)=>x.t-y.t);
+  const order = {"一次性":0,"每回合":1,"战斗中":2,"放大":3,"吃层数":4,"不叠层":5};
+  members.sort((x,y)=> x.t-y.t || order[x.m]-order[y.m]);
+  $("bond-detail").innerHTML = `
+    <div class="bondcard">
+      <h2>${esc(b.n)}<span>${b.core?"核心盟约":"附加盟约"} · ${b.ppl} 人激活${b.full?` · ${b.full} 人满效果`:""} · 成员 ${b.cnt} 人，其中 ${b.stk} 人会叠层</span></h2>
+      <div class="gain">随层数涨：<b>${esc(b.gain)}</b></div>
+      ${b.th.length?`<div>${b.th.map(t=>`<span class="th">${esc(t)}</span>`).join("")}</div>`:""}
+      <div class="effect">${eff}</div>
+    </div>
+    <h3>成员（按阶排）</h3>
+    <div class="rows">${members.map(o=>rowHTML(o,b.n)).join("") || '<div class="empty">这个盟约没有固定成员，按场上精锐干员数激活。</div>'}</div>
+    <h3>不属于${esc(b.n)}也能帮它叠层的</h3>
+    <p class="lede">看站位或只认层数最高盟约的干员，摆对位置、把${esc(b.n)}养成最高层，就能给它加。另外【助力】盟约本身每回合给所有已激活盟约 +2（3 人 +4）。</p>
+    <div class="rows">${helpers.map(o=>rowHTML(o,"")).join("")}</div>`;
+}
+
+function chipGroup(id, items, set, label){
+  const el = $(id);
+  el.innerHTML = `<span>${label}</span>` + items.map(v => `<button class="chip" data-v="${v}" aria-pressed="${set.has(v)}">${typeof v==="number"?ROMAN[v]:v}</button>`).join("");
+  el.onclick = e => { const btn = e.target.closest(".chip"); if(!btn) return;
+    const v = typeof items[0]==="number" ? Number(btn.dataset.v) : btn.dataset.v;
+    set.has(v) ? set.delete(v) : set.add(v); btn.setAttribute("aria-pressed", set.has(v)); render(); };
+}
+
+function renderSources(){
+  const list = DATA.ops.filter(o => state.srcMode.has(o.m) && state.srcTier.has(o.t) && (!state.srcBond || o.b.includes(state.srcBond) || o.tg.includes(state.srcBond)))
+    .sort((x,y)=> x.t-y.t || STACK_MODES.indexOf(x.m)-STACK_MODES.indexOf(y.m));
+  $("src-count").textContent = `${list.length} 人`;
+  $("src-rows").innerHTML = list.map(o=>rowHTML(o,state.srcBond)).join("") || '<div class="empty">没有符合条件的干员，放宽一下筛选。</div>';
+}
+
+function renderAll(){
+  const q = state.q.trim();
+  const list = DATA.ops.filter(o => state.allMode.has(o.m) && (!q || o.n.includes(q) || o.b.some(b=>b.includes(q)) || o.t1.includes(q) || o.t2.includes(q)))
+    .sort((x,y)=>x.t-y.t);
+  $("all-count").textContent = `${list.length} 人`;
+  $("all-rows").innerHTML = list.map(o=>rowHTML(o,"")).join("") || '<div class="empty">没找到。试试换个关键词，比如盟约名或「休整期」。</div>';
+}
+
+function render(){
+  for(const t of ["overview","bond","sources","all"]){ $("p-"+t).hidden = t!==state.tab; $("tab-"+t).setAttribute("aria-selected", t===state.tab); }
+  if(state.tab==="overview") renderOverview();
+  if(state.tab==="bond") renderBond();
+  if(state.tab==="sources") renderSources();
+  if(state.tab==="all") renderAll();
+}
+
+function go(tab){ state.tab = tab; if(location.hash !== "#"+tab) history.replaceState(null, "", "#"+tab); render(); }
+
+document.querySelector("nav.tabs").onclick = e => { const b = e.target.closest("button[data-tab]"); if(b) go(b.dataset.tab); };
+document.addEventListener("click", e => {
+  const g = e.target.closest("[data-go]"); if(g){ state.bond = g.dataset.go; remember(); go("bond"); window.scrollTo({top:0}); return; }
+  const p = e.target.closest("[data-pick]"); if(p){ state.bond = p.dataset.pick; remember(); renderBond(); }
+});
+const sel = $("src-bond");
+DATA.bonds.forEach(b => { const o = document.createElement("option"); o.value = b.n; o.textContent = b.n; sel.appendChild(o); });
+sel.onchange = () => { state.srcBond = sel.value; renderSources(); };
+$("all-q").oninput = e => { state.q = e.target.value; renderAll(); };
+chipGroup("src-mode", STACK_MODES, state.srcMode, "方式");
+chipGroup("src-tier", [1,2,3,4,5,6], state.srcTier, "阶");
+chipGroup("all-mode", ALL_MODES, state.allMode, "方式");
+const fromHash = () => { const h = location.hash.slice(1); state.tab = ["overview","bond","sources","all"].includes(h) ? h : "overview"; render(); };
+window.addEventListener("hashchange", fromHash);
+fromHash();
+</script>

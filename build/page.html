@@ -100,6 +100,39 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
 .gain b{color:var(--accent)}
 h3{font-size:15px;margin:6px 0 0}
 .empty{padding:16px;color:var(--muted)}
+/* 流派页 */
+.notice{background:var(--mark);color:var(--mark-ink);border-radius:8px;padding:10px 12px;font-size:13px;max-width:90ch}
+details.method{font-size:13px;color:var(--muted);max-width:90ch}
+details.method summary{cursor:pointer;color:var(--accent)}
+details.method ul{margin:6px 0 0;padding-left:20px}
+.vd{display:inline-block;font-size:12px;font-weight:600;border-radius:4px;padding:0 6px;white-space:nowrap}
+.vd.成立{color:var(--m2);background:var(--m2b)}.vd.不成立{color:var(--m5);background:var(--m5b)}
+.vd.部分成立{color:var(--m1);background:var(--m1b)}.vd.数据无法判断{color:var(--m6);background:var(--m6b)}
+.facts{margin:4px 0 0;padding-left:18px;font-size:12px;color:var(--muted)}
+.bcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+.bcard{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.bcard h4{margin:0;font-family:var(--f-display);font-size:17px;line-height:1.3}
+.bcard .grp{font-size:11px;color:var(--muted)}
+.bcard dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:13px}
+.bcard dt{color:var(--muted);font-size:12px;white-space:nowrap}
+.bcard dd{margin:0;min-width:0}
+.ops{display:flex;flex-direction:column;gap:3px}
+.ops .op{display:flex;gap:6px;align-items:baseline;font-size:13px}
+.ops .op .tier{flex:none}
+.ops .op .ext{font-size:11px;color:var(--m4);border:1px solid currentColor;border-radius:4px;padding:0 4px;flex:none}
+.srcs{font-size:12px;color:var(--muted)}
+.srcs a{color:var(--accent)}
+.cons{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+.cons .rule b{font-size:13px;letter-spacing:0}
+ul.open{margin:0;padding-left:20px;max-width:90ch}
+@media (max-width:480px){.bcards{grid-template-columns:1fr}}
+@media (max-width:600px){
+  table.wide.stack1 tr{grid-template-columns:1fr}
+  table.wide td[data-l]::before{content:attr(data-l) "：";font-size:12px;color:var(--muted)}
+}
+ul.open li.more-li{list-style:none;margin-left:-20px}
+details.more{margin-top:6px}
+details.more summary{cursor:pointer;color:var(--accent);font-size:13px}
 /* 经济页 */
 table.compact{min-width:0}
 table.wide{min-width:640px}
@@ -126,7 +159,7 @@ footer a{color:var(--accent)}
 
 <div class="wrap">
 <header>
-  <h1>规程速查：叠层与经济<small>卫戍协议·规程 序列Ⅰ · 26 个盟约，143 名干员 · 盟约和干员取自 PRTS，经济数据取自游戏客户端数据 · 2026-11-12 整理</small></h1>
+  <h1>规程速查：叠层、经济与流派<small>卫戍协议·规程 序列Ⅰ · 26 个盟约，143 名干员 · 盟约和干员取自 PRTS，经济数据取自游戏客户端数据，流派汇总自玩家社区 · 2026-11-19 更新</small></h1>
   <div class="rules">
     <div class="rule"><b>层数整局保留</b>游戏贴士原文：叠加的盟约会在单次模拟中始终保留，但只有在盟约被激活时才会发挥作用。</div>
     <div class="rule"><b>只给已激活的盟约叠</b>游戏贴士原文：多数情况下只有已经激活的盟约才可进行叠加。中途换主盟约，之前攒的层基本白费。</div>
@@ -138,6 +171,7 @@ footer a{color:var(--accent)}
     <button role="tab" data-tab="sources" id="tab-sources">叠层来源</button>
     <button role="tab" data-tab="all" id="tab-all">全部干员</button>
     <button role="tab" data-tab="econ" id="tab-econ">经济</button>
+    <button role="tab" data-tab="builds" id="tab-builds">流派</button>
   </nav>
 </header>
 
@@ -219,9 +253,33 @@ footer a{color:var(--accent)}
   </div>
 </section>
 
+<section class="panel" id="p-builds" hidden>
+  <p class="lede" id="bd-lede"></p>
+  <div class="notice" id="bd-caveat"></div>
+  <details class="method"><summary>这些结论怎么来的</summary><ul id="bd-method"></ul></details>
+  <h3>各盟约：几方怎么说，数据怎么看</h3>
+  <div class="tablebox"><table class="wide stack1">
+    <thead><tr><th>盟约 / 主题</th><th>MSN 表格</th><th>贴吧楼主</th><th>NGA 多数意见</th><th>数据核查后</th></tr></thead>
+    <tbody id="bd-bonds"></tbody>
+  </table></div>
+  <h3>流派卡片</h3>
+  <div class="filters"><div class="fgroup" id="bd-filter"><span>盟约</span></div><span class="count" id="bd-count"></span></div>
+  <div class="bcards" id="bd-cards"></div>
+  <h3>常见说法核查</h3>
+  <div class="filters"><div class="fgroup" id="bd-vfilter"><span>结论</span></div><span class="count" id="bd-ccount"></span></div>
+  <div class="tablebox"><table class="wide">
+    <thead><tr><th>说法</th><th>出处</th><th>结论</th><th>依据</th></tr></thead>
+    <tbody id="bd-checks"></tbody>
+  </table></div>
+  <h3>大家基本同意的</h3>
+  <div class="cons" id="bd-cons"></div>
+  <h3>还确认不了的</h3>
+  <ul class="open" id="bd-open"></ul>
+</section>
+
 <footer>
   <span>分类说明：一次性 = 拿到时加一次；每回合 = 休整期、战斗开始或结束时固定触发；战斗中 = 部署、开技能、击倒等时机触发，通常有上限；放大 = 提高别人的叠层量或上限；吃层数 = 按层数给自己加属性。分类和「随层数涨什么」是根据特质原文整理的，数值以游戏内为准。</span>
-  <span>还没收录：每回合发多少资金、各阶刷新概率（未公开）、每回合敌人强度、流派搭配。来源：<a href="https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录" target="_blank" rel="noopener">PRTS · 卫戍协议·规程/PRTS盟约记录</a>、<a href="https://prts.wiki/w/卫戍协议/帮助" target="_blank" rel="noopener">PRTS · 卫戍协议/帮助</a>；经济数值取自 <a href="https://github.com/Kengxxiao/ArknightsGameData" target="_blank" rel="noopener">ArknightsGameData</a> 收录的国服客户端数据。</span>
+  <span>流派页汇总的是玩家说法，经我们用游戏数据核对，强弱判断仍以实战为准。还没收录：每回合发多少资金、各阶刷新概率（未公开）、每回合敌人强度。来源：<a href="https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录" target="_blank" rel="noopener">PRTS · 卫戍协议·规程/PRTS盟约记录</a>、<a href="https://prts.wiki/w/卫戍协议/帮助" target="_blank" rel="noopener">PRTS · 卫戍协议/帮助</a>；经济数值取自 <a href="https://github.com/Kengxxiao/ArknightsGameData" target="_blank" rel="noopener">ArknightsGameData</a> 收录的国服客户端数据。</span>
   <span>PRTS 的整理内容采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 授权，本页也按这个协议发布；游戏文本原文版权归上海鹰角网络科技有限公司。本页是玩家自制资料，与官方无关。</span>
 </footer>
 </div>
@@ -234,7 +292,7 @@ const ALL_MODES = ["一次性","每回合","战斗中","放大","吃层数","不
 const GENERIC = ["层数最高的盟约","自己和身前一格干员的盟约","自己和身后一格干员的盟约","身前一格干员的盟约","整备区每名干员的盟约"];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const $ = id => document.getElementById(id);
-const state = {econMode:-1, econTags:new Set(), tab:"overview", bond:"炎", srcMode:new Set(STACK_MODES), srcTier:new Set([1,2,3,4,5,6]), srcBond:"", allMode:new Set(ALL_MODES), q:""};
+const state = {bdBond:"", bdVerdict:new Set(), econMode:-1, econTags:new Set(), tab:"overview", bond:"炎", srcMode:new Set(STACK_MODES), srcTier:new Set([1,2,3,4,5,6]), srcBond:"", allMode:new Set(ALL_MODES), q:""};
 try{ const saved = JSON.parse(localStorage.getItem("stack-guide")||"{}"); if(saved.bond) state.bond = saved.bond; }catch(e){}
 function remember(){ try{ localStorage.setItem("stack-guide", JSON.stringify({bond:state.bond})); }catch(e){} }
 
@@ -365,13 +423,70 @@ function renderEcon(){
     <td class="num">${b.ppl}</td><td class="desc">${esc(b.e).replace(/ \/ /g,"\n")}</td></tr>`).join("");
 }
 
+const VERDICTS = ["不成立","部分成立","成立","数据无法判断"];
+function srcLink(s){
+  const M = DATA.builds.meta.sources;
+  if(s === "msn") return `<a href="${esc(M.msn.url)}" target="_blank" rel="noopener">MSN</a>`;
+  const [k, v] = String(s).split(":");
+  if(k === "tieba") return `<a href="${esc(M.tieba.url)}" target="_blank" rel="noopener">贴吧 ${esc(v)}楼</a>`;
+  if(k === "nga") return `<a href="${esc(M.nga.urlTpl.replace("{id}", v))}" target="_blank" rel="noopener">NGA ${esc(v)}</a>`;
+  return esc(s);
+}
+function bondTag(b){ return DATA.bonds.some(x=>x.n===b) ? `<button class="btag" data-go="${esc(b)}" title="查看${esc(b)}盟约">${esc(b)}</button>` : `<span class="btag">${esc(b)}</span>`; }
+function renderBuilds(){
+  const B = DATA.builds, M = B.meta, G = B.groups;
+  $("bd-lede").textContent = `把贴吧、NGA 和一张流派排行表里的玩家说法汇总起来，再拿游戏数据逐条核对。${M.dataVersion}，${M.updated} 整理。`;
+  $("bd-caveat").textContent = M.caveats.join(" ");
+  $("bd-method").innerHTML = M.method.map(t=>`<li>${esc(t)}</li>`).join("");
+  const order = DATA.bonds.map(b=>b.n);
+  const rank = b => { const i = order.indexOf(b.name); return b.kind==="主题" ? 1000 : (i<0 ? 500 : i); };
+  const bonds = G.flatMap(g=>g.bonds||[]).sort((a,b)=>rank(a)-rank(b));
+  $("bd-bonds").innerHTML = bonds.map(b=>`<tr>
+    <td><b>${esc(b.name)}</b><div class="kind">${esc(b.kind||"")}</div></td>
+    <td data-l="MSN">${esc(b.views?.MSN||"—")}</td><td data-l="贴吧">${esc(b.views?.["贴吧"]||"—")}</td><td data-l="NGA">${esc(b.views?.NGA||"—")}</td>
+    <td class="desc" data-l="核查后">${esc(b.verdict||"")}${(b.facts||[]).length?`<ul class="facts">${b.facts.map(f=>`<li>${esc(f)}</li>`).join("")}</ul>`:""}</td></tr>`).join("");
+  const builds = G.flatMap(g=>(g.builds||[]).map(x=>({...x, grp:g.title})));
+  const allB = [...new Set(builds.flatMap(x=>x.bonds||[]))].sort((a,b)=>(order.indexOf(a)+1||99)-(order.indexOf(b)+1||99));
+  const bf = $("bd-filter");
+  bf.innerHTML = "<span>盟约</span>" + ["", ...allB].map(b=>`<button class="chip" data-b="${esc(b)}" aria-pressed="${state.bdBond===b}">${b?esc(b):"全部"}</button>`).join("");
+  bf.onclick = e => { const c = e.target.closest(".chip"); if(c){ state.bdBond = c.dataset.b; renderBuilds(); } };
+  const shown = builds.filter(x=>!state.bdBond || (x.bonds||[]).includes(state.bdBond));
+  $("bd-count").textContent = `${shown.length} 个流派`;
+  $("bd-cards").innerHTML = shown.map(x=>`<article class="bcard">
+    <div class="grp">${esc(x.grp)}</div>
+    <h4>${esc(x.name)}</h4>
+    <div class="bonds">${(x.bonds||[]).map(bondTag).join("")}</div>
+    <dl>
+      <dt>思路</dt><dd>${esc(x.idea||"")}</dd>
+      <dt>核心</dt><dd><div class="ops">${(x.core||[]).map(o=>`<div class="op">${o.t?`<span class="tier t${o.t}">${ROMAN[o.t]}</span>`:`<span class="ext">外援</span>`}<span class="name">${esc(o.n)}</span><span class="meta">${esc(o.note||"")}</span></div>`).join("")}</div></dd>
+      <dt>节奏</dt><dd>${esc(x.tempo||"")}</dd>
+      <dt>强项</dt><dd>${esc(x.strong||"")}</dd>
+      <dt>弱点</dt><dd>${esc(x.weak||"")}</dd>
+    </dl>
+    <div class="srcs">来源：${(x.sources||[]).map(srcLink).join("、")}</div>
+  </article>`).join("") || '<div class="empty">这个盟约还没有对应的流派卡片。</div>';
+  const vf = $("bd-vfilter");
+  vf.innerHTML = "<span>结论</span>" + VERDICTS.map(v=>`<button class="chip" data-v="${v}" aria-pressed="${state.bdVerdict.has(v)}">${v}</button>`).join("");
+  vf.onclick = e => { const c = e.target.closest(".chip"); if(!c) return; const v = c.dataset.v; state.bdVerdict.has(v) ? state.bdVerdict.delete(v) : state.bdVerdict.add(v); renderBuilds(); };
+  const checks = G.flatMap(g=>g.checks||[]).filter(c=>!state.bdVerdict.size || state.bdVerdict.has(c.verdict))
+    .sort((a,b)=>VERDICTS.indexOf(a.verdict)-VERDICTS.indexOf(b.verdict));
+  $("bd-ccount").textContent = `${checks.length} 条`;
+  $("bd-checks").innerHTML = checks.map(c=>`<tr><td><b>${esc(c.claim)}</b></td><td class="srcs">${srcLink(c.from)}</td>
+    <td><span class="vd ${esc(c.verdict)}">${esc(c.verdict)}</span></td><td class="desc">${esc(c.basis)}</td></tr>`).join("");
+  $("bd-cons").innerHTML = M.consensus.map(c=>`<div class="rule"><b>${esc(c.title)}</b>${esc(c.text)}</div>`).join("");
+  const gopen = G.flatMap(g=>(g.open||[]).map(t=>({g:g.title,t})));
+  $("bd-open").innerHTML = M.open.map(t=>`<li>${esc(t)}</li>`).join("")
+    + `<li class="more-li"><details class="more"><summary>各流派还要实战验证的 ${gopen.length} 个问题</summary><ul class="open">${gopen.map(x=>`<li>${esc(x.t)}<span class="kind">（${esc(x.g)}）</span></li>`).join("")}</ul></details></li>`;
+}
+
 function render(){
-  for(const t of ["overview","bond","sources","all","econ"]){ $("p-"+t).hidden = t!==state.tab; $("tab-"+t).setAttribute("aria-selected", t===state.tab); }
+  for(const t of ["overview","bond","sources","all","econ","builds"]){ $("p-"+t).hidden = t!==state.tab; $("tab-"+t).setAttribute("aria-selected", t===state.tab); }
   if(state.tab==="overview") renderOverview();
   if(state.tab==="bond") renderBond();
   if(state.tab==="sources") renderSources();
   if(state.tab==="all") renderAll();
   if(state.tab==="econ") renderEcon();
+  if(state.tab==="builds") renderBuilds();
 }
 
 function go(tab){ state.tab = tab; if(location.hash !== "#"+tab) history.replaceState(null, "", "#"+tab); render(); }
@@ -388,7 +503,7 @@ $("all-q").oninput = e => { state.q = e.target.value; renderAll(); };
 chipGroup("src-mode", STACK_MODES, state.srcMode, "方式");
 chipGroup("src-tier", [1,2,3,4,5,6], state.srcTier, "阶");
 chipGroup("all-mode", ALL_MODES, state.allMode, "方式");
-const fromHash = () => { const h = location.hash.slice(1); state.tab = ["overview","bond","sources","all","econ"].includes(h) ? h : "overview"; render(); };
+const fromHash = () => { const h = location.hash.slice(1); state.tab = ["overview","bond","sources","all","econ","builds"].includes(h) ? h : "overview"; render(); };
 window.addEventListener("hashchange", fromHash);
 fromHash();
 </script>

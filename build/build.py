@@ -20,6 +20,8 @@ subprocess.run([sys.executable, "-I", str(root / "build/econ.py"), str(root / "d
 
 merged = json.loads((root / "data/ops.json").read_text(encoding="utf-8"))
 merged["econ"] = json.loads((root / "data/econ.json").read_text(encoding="utf-8"))
+groups = [json.loads(f.read_text(encoding="utf-8")) for f in sorted((root / "data/builds").glob("G*.json"))]
+merged["builds"] = {"meta": json.loads((root / "data/builds_meta.json").read_text(encoding="utf-8")), "groups": groups}
 data = json.dumps(merged, ensure_ascii=False).replace("</", "<\\/")
 page = (root / "build/page.html").read_text(encoding="utf-8").replace("/*__DATA__*/null", data)
 page = page.replace('<meta name="claude:viewport-fit-sides" content="cover">\n', "")

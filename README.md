@@ -4,6 +4,7 @@
 
 - 叠层：每个盟约随层数涨什么、有哪些层数门槛，以及 143 名干员按叠层方式（一次性、每回合、战斗中、放大、吃层数）分类。
 - 经济：调度中心各级升级费用和栏位、干员和装备价格、各模式回合安排、61 个策略的初始生命和经济效果，以及和资金有关的干员、盟约。
+- 流派：汇总贴吧、NGA 和一张流派排行表里的玩家说法，各盟约的评价对照、36 张流派卡片、56 条用游戏数据核对过的说法，以及还确认不了的问题。
 
 在线查看：https://sulinmk.github.io/ak-stronghold-guide/
 
@@ -14,13 +15,15 @@
 - `build/classify.py`：给干员特质分类、提取叠层对象、数值和上限
 - `build/econ.py`：整理经济页数据，策略的经济标签和经济干员名单在这里手工维护
 - `build/fetch_gamedata.py`：下载客户端数据并摘出经济表（需要联网；换赛季改里面的 `ACT_ID`）
+- `data/builds/G1.json`～`G7.json`：流派页的内容，按盟约分 7 组，用自己的话概括玩家说法并注明来源
+- `data/builds_meta.json`：流派页的说明、共识、还确认不了的问题和来源链接
 - `build/page.html`：网页模板
 - `build/build.py`：生成脚本
 - `index.html`：生成出来的网页，不要直接改
 
 ## 更新
 
-改分类规则改 `build/classify.py`，改经济页改 `build/econ.py`，改页面改 `build/page.html`，然后在仓库根目录运行：
+改分类规则改 `build/classify.py`，改经济页改 `build/econ.py`，改流派内容改 `data/builds/` 下的文件，改页面改 `build/page.html`，然后在仓库根目录运行：
 
 ```bash
 python3 build/build.py
@@ -36,4 +39,4 @@ python3 -I build/fetch_gamedata.py
 
 ## 来源与授权
 
-盟约和干员数据整理自 [PRTS](https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录)，规则说明参考 [PRTS · 卫戍协议/帮助](https://prts.wiki/w/卫戍协议/帮助)。PRTS 的整理内容采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans) 授权，本仓库也按这个协议发布。经济数值取自 [ArknightsGameData](https://github.com/Kengxxiao/ArknightsGameData) 收录的国服客户端数据。游戏文本和数据版权归上海鹰角网络科技有限公司。本项目与官方无关。
+盟约和干员数据整理自 [PRTS](https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录)，规则说明参考 [PRTS · 卫戍协议/帮助](https://prts.wiki/w/卫戍协议/帮助)。PRTS 的整理内容采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans) 授权，本仓库也按这个协议发布。流派页概括了[贴吧](https://tieba.baidu.com/p/11200811994)、NGA 明日方舟版和 MSN 转载的一篇流派排行文章里的玩家说法，没有转载原文，原帖版权归各作者。经济数值取自 [ArknightsGameData](https://github.com/Kengxxiao/ArknightsGameData) 收录的国服客户端数据。游戏文本和数据版权归上海鹰角网络科技有限公司。本项目与官方无关。

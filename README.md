@@ -17,6 +17,8 @@
 - `build/fetch_gamedata.py`：下载客户端数据并摘出经济表（需要联网；换赛季改里面的 `ACT_ID`）
 - `data/builds/G1.json`～`G7.json`：流派页的内容，按盟约分 7 组，用自己的话概括玩家说法并注明来源
 - `data/builds_meta.json`：流派页的说明、共识、还确认不了的问题和来源链接
+- `data/avatars.json`：干员名到游戏内编号的对应表，以及头像素材仓库的固定版本
+- `assets/avatars/<编号>.webp`：干员头像，64×64，由 `build/fetch_avatars.py` 生成（需要联网和 `cwebp`，已有的文件会跳过）
 - `build/page.html`：网页模板
 - `build/build.py`：生成脚本
 - `index.html`：生成出来的网页，不要直接改
@@ -39,4 +41,4 @@ python3 -I build/fetch_gamedata.py
 
 ## 来源与授权
 
-盟约和干员数据整理自 [PRTS](https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录)，规则说明参考 [PRTS · 卫戍协议/帮助](https://prts.wiki/w/卫戍协议/帮助)。PRTS 的整理内容采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans) 授权，本仓库也按这个协议发布。流派页概括了[贴吧](https://tieba.baidu.com/p/11200811994)、NGA 明日方舟版和 MSN 转载的一篇流派排行文章里的玩家说法，没有转载原文，原帖版权归各作者。经济数值取自 [ArknightsGameData](https://github.com/Kengxxiao/ArknightsGameData) 收录的国服客户端数据。游戏文本和数据版权归上海鹰角网络科技有限公司。本项目与官方无关。
+盟约和干员数据整理自 [PRTS](https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录)，规则说明参考 [PRTS · 卫戍协议/帮助](https://prts.wiki/w/卫戍协议/帮助)。PRTS 的整理内容采用 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans) 授权，本仓库也按这个协议发布。流派页概括了[贴吧](https://tieba.baidu.com/p/11200811994)、NGA 明日方舟版和 MSN 转载的一篇流派排行文章里的玩家说法，没有转载原文，原帖版权归各作者。经济数值取自 [ArknightsGameData](https://github.com/Kengxxiao/ArknightsGameData) 收录的国服客户端数据。干员头像取自 [ArknightsGameResource](https://github.com/yuanyan3060/ArknightsGameResource) 整理的游戏素材，缩小后存放在本仓库。游戏文本、数据和美术素材版权归上海鹰角网络科技有限公司。本项目与官方无关。

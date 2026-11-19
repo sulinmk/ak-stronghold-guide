@@ -68,7 +68,9 @@ td.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:n
 .row{display:grid;grid-template-columns:150px 150px 170px 1fr;gap:4px 14px;padding:10px 12px;border-bottom:1px solid var(--line)}
 .row:last-child{border-bottom:0}
 .row>*{min-width:0}
-.who{display:flex;gap:8px;align-items:baseline}
+.who{display:flex;gap:8px;align-items:center}
+.av{width:28px;height:28px;border-radius:6px;flex:none;background:var(--line);object-fit:cover}
+.ops .op .av{width:24px;height:24px;border-radius:5px}
 .tier{font-family:var(--f-display);font-weight:700;font-size:12px;min-width:22px;text-align:center;border:1.5px solid currentColor;border-radius:4px;line-height:18px}
 .tier.t1{color:var(--t1)}.tier.t2{color:var(--t2)}.tier.t3{color:var(--t3)}.tier.t4{color:var(--t4)}.tier.t5{color:var(--t5)}.tier.t6{color:var(--t6)}
 .name{font-weight:600}
@@ -280,7 +282,7 @@ footer a{color:var(--accent)}
 <footer>
   <span>分类说明：一次性 = 拿到时加一次；每回合 = 休整期、战斗开始或结束时固定触发；战斗中 = 部署、开技能、击倒等时机触发，通常有上限；放大 = 提高别人的叠层量或上限；吃层数 = 按层数给自己加属性。分类和「随层数涨什么」是根据特质原文整理的，数值以游戏内为准。</span>
   <span>流派页汇总的是玩家说法，经我们用游戏数据核对，强弱判断仍以实战为准。还没收录：每回合发多少资金、各阶刷新概率（未公开）、每回合敌人强度。来源：<a href="https://prts.wiki/w/卫戍协议·规程/PRTS盟约记录" target="_blank" rel="noopener">PRTS · 卫戍协议·规程/PRTS盟约记录</a>、<a href="https://prts.wiki/w/卫戍协议/帮助" target="_blank" rel="noopener">PRTS · 卫戍协议/帮助</a>；经济数值取自 <a href="https://github.com/Kengxxiao/ArknightsGameData" target="_blank" rel="noopener">ArknightsGameData</a> 收录的国服客户端数据。</span>
-  <span>PRTS 的整理内容采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 授权，本页也按这个协议发布；游戏文本原文版权归上海鹰角网络科技有限公司。本页是玩家自制资料，与官方无关。</span>
+  <span>PRTS 的整理内容采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 授权，本页也按这个协议发布；游戏文本原文和干员头像版权归上海鹰角网络科技有限公司，头像取自游戏素材整理仓库 ArknightsGameResource。本页是玩家自制资料，与官方无关。</span>
 </footer>
 </div>
 
@@ -296,6 +298,11 @@ const state = {bdBond:"", bdVerdict:new Set(), econMode:-1, econTags:new Set(), 
 try{ const saved = JSON.parse(localStorage.getItem("stack-guide")||"{}"); if(saved.bond) state.bond = saved.bond; }catch(e){}
 function remember(){ try{ localStorage.setItem("stack-guide", JSON.stringify({bond:state.bond})); }catch(e){} }
 
+function av(name){
+  const m = DATA.avatars || {};
+  const id = m[name] || m[String(name).replace(/（.*?）/g, "")];
+  return id ? `<img class="av" src="assets/avatars/${esc(id)}.webp" alt="" loading="lazy" decoding="async" width="28" height="28">` : "";
+}
 function rowHTML(o, hiBond){
   const bonds = o.b.map(b => `<button class="btag${b===hiBond?" hit":""}" data-go="${esc(b)}" title="查看${esc(b)}盟约">${esc(b)}</button>`).join("");
   const isStack = ["一次性","每回合","战斗中"].includes(o.m);
@@ -308,7 +315,7 @@ function rowHTML(o, hiBond){
   const note = o.note ? `<div class="note">${esc(o.note)}</div>` : "";
   const eat = o.eat && o.m!=="吃层数" ? `<div class="meta">也按层数给自己加属性</div>` : "";
   return `<div class="row">
-    <div class="who"><span class="tier t${o.t}">${ROMAN[o.t]}</span><span class="name">${esc(o.n)}</span></div>
+    <div class="who">${av(o.n)}<span class="tier t${o.t}">${ROMAN[o.t]}</span><span class="name">${esc(o.n)}</span></div>
     <div class="bonds">${bonds}</div>
     <div class="stack"><div class="line">${line1}</div>${detail}${note}${eat}</div>
     <div class="trait"><div>${esc(o.t1)}</div>${o.t2?`<div class="elite">${esc(o.t2)}</div>`:""}</div>
@@ -416,7 +423,7 @@ function renderEcon(){
     <td class="num hp">${b.hp}</td><td>${b.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")||'<span class="kind">无</span>'}</td>
     <td class="desc">${esc(b.desc)}</td></tr>`).join("");
   $("econ-ops").innerHTML = E.ops.map(o => `<tr><td><span class="tag">${esc(o.tag)}</span></td>
-    <td><div class="who"><span class="tier t${o.t}">${ROMAN[o.t]}</span><span class="name">${esc(o.n)}</span></div></td>
+    <td><div class="who">${av(o.n)}<span class="tier t${o.t}">${ROMAN[o.t]}</span><span class="name">${esc(o.n)}</span></div></td>
     <td><div class="bonds">${o.b.map(b=>`<button class="btag" data-go="${esc(b)}">${esc(b)}</button>`).join("")}</div></td>
     <td class="trait"><div>${esc(o.t1)}</div>${o.t2?`<div class="elite">${esc(o.t2)}</div>`:""}</td></tr>`).join("");
   $("econ-bonds").innerHTML = E.bonds.map(b => `<tr><td><button class="bondlink" data-go="${esc(b.n)}">${esc(b.n)}</button></td>
@@ -458,7 +465,7 @@ function renderBuilds(){
     <div class="bonds">${(x.bonds||[]).map(bondTag).join("")}</div>
     <dl>
       <dt>思路</dt><dd>${esc(x.idea||"")}</dd>
-      <dt>核心</dt><dd><div class="ops">${(x.core||[]).map(o=>`<div class="op">${o.t?`<span class="tier t${o.t}">${ROMAN[o.t]}</span>`:`<span class="ext">外援</span>`}<span class="name">${esc(o.n)}</span><span class="meta">${esc(o.note||"")}</span></div>`).join("")}</div></dd>
+      <dt>核心</dt><dd><div class="ops">${(x.core||[]).map(o=>`<div class="op">${av(o.n)}${o.t?`<span class="tier t${o.t}">${ROMAN[o.t]}</span>`:`<span class="ext">外援</span>`}<span class="name">${esc(o.n)}</span><span class="meta">${esc(o.note||"")}</span></div>`).join("")}</div></dd>
       <dt>节奏</dt><dd>${esc(x.tempo||"")}</dd>
       <dt>强项</dt><dd>${esc(x.strong||"")}</dd>
       <dt>弱点</dt><dd>${esc(x.weak||"")}</dd>
